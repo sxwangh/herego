@@ -1,17 +1,24 @@
 {
-  "name": "js",
+  "name": "herego",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "一个可随处开启静态资源服务的工具，允许鉴权",
+  "author": "wangsixue",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node ./bin/herego.js"
   },
+  "bin": {
+    "herego": "./bin/herego.js"
+  },
+  "files": ["bin"],
   "engines": {
     "node": "18.15.0",
     "pnpm": "7.9.3"
   },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/sxwangh/herego.git"
+  },
   "keywords": [],
-  "author": "",
   "license": "ISC",
   "dependencies": {
     "chalk": "2",

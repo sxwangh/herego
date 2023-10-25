@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const serveStatic = require('serve-static');
 const serveIndex = require('serve-index');
 const express = require('express');
