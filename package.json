@@ -1,6 +1,6 @@
 {
   "name": "herego",
-  "version": "1.0.0",
+  "version": "1.0.6",
   "description": "一个可随处开启静态资源服务的工具，允许鉴权",
   "author": "wangsixue",
   "scripts": {
