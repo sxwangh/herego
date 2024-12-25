@@ -5,7 +5,9 @@ const serveIndex = require('serve-index');
 const express = require('express');
 const commander = require('commander');
 const chalk = require('chalk');
+const { exec } = require('child_process');  
 const app = express();
+
 
 // 变量
 let PORT = 8888;
@@ -68,7 +70,44 @@ app.use(serveStatic(process.cwd(), { 'index': ['index.html'] }));
 app.use(serveIndex(process.cwd(), { 'icons': true }));
 
 app.listen(PORT);
-console.log(chalk.green(`\n Running at : http:localhost:${PORT} \n`));
+
+const url = `http:localhost:${PORT}`;
+
+
+// 打开 URL 的函数  
+const openUrl = (url) => {  
+    switch (process.platform) {  
+        case 'win32': // Windows  
+            exec(`start "" "${url}"`, (err) => {  
+                if (err) {  
+                    console.error('Failed to open URL on Windows:', err);  
+                }  
+            });  
+            break;  
+        case 'darwin': // macOS  
+            exec(`open "${url}"`, (err) => {  
+                if (err) {  
+                    console.error('Failed to open URL on macOS:', err);  
+                }  
+            });  
+            break;  
+        case 'linux': // Linux  
+            exec(`xdg-open "${url}"`, (err) => {  
+                if (err) {  
+                    console.error('Failed to open URL on Linux:', err);  
+                }  
+            });  
+            break;  
+        default:  
+            console.error('Unsupported platform:', process.platform);  
+    }  
+};  
+
+// 调用函数打开 URL  
+openUrl(url);  
+
+
+console.log(chalk.green(`\n Running at : ${url} \n`));
 //base64转化
 // console.log(Buffer.from("Hello World").toString('base64'));
 // console.log(Buffer.from("SGVsbG8gV29ybGQ=", 'base64').toString('ascii'));
